@@ -17,6 +17,7 @@ function shouldCompress (req, res) {
     // don't compress responses with this request header
     return false
   }
+ 
   // fallback to standard filter function
   return compression.filter(req, res)
 }
@@ -26,10 +27,15 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/budget", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/budget',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 // routes
 app.use(require("./routes/api.js"));
