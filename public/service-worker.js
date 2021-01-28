@@ -12,7 +12,6 @@ const FILES_TO_CACHE = [
     "/assets/images/icons/icon-512x512.png",
     "/index.js",
     "/db.js",
-    "/public/style.css"
   ];
   
   const CACHE_NAME = "static-cache-v2";
